@@ -78,6 +78,7 @@ export const Chart = () => {
                     <button onClick={() => { setFetchInterval("1M"); setDomain(500000) }} className={` duration-200 ${fetchInterval == "1M" ? "text-white bg-indigo-600" : "text-gray-600 hover:bg-gray-100"} h-10 px-4 rounded-lg `}>1m</button>
                     <button className={` duration-200 ${fetchInterval == "6m" ? "text-white bg-indigo-600" : "text-gray-400 "} h-10 px-4 rounded-lg `}>6m</button>
                     <button className={` duration-200 ${fetchInterval == "1y" ? "text-white bg-indigo-600" : "text-gray-400 "} h-10 px-4 rounded-lg `}>1y</button>
+                    <button className={` duration-200 ${fetchInterval == "1y" ? "text-white bg-indigo-600" : "text-gray-400 "} h-10 px-4 rounded-lg `}>max</button>
                 </div>
             </div>
                 <div className=" w-full h-[500px] bg-white p-4 relative flex gap-2 mt-10">
@@ -89,30 +90,26 @@ export const Chart = () => {
                             <div className='border-x-[0.5px] border-gray-200'></div>
                             <div className='border-x-[0.5px] border-gray-200'></div>
                         </div>
-                        <ResponsiveContainer width="100%" height="100%" className="absolute z-10">
+                        <ResponsiveContainer width="100%" height="100%" className="absolute left-0 top-0 border-[1px] border-gray-100">
 
-                            <ComposedChart data={dataset}>
+                            <ComposedChart data={dataset} className=''>
+                                <XAxis display="none" dataKey="Time" />
+                                <YAxis yAxisId="left" width={0} className='w-0 hidden'/>
+                                <YAxis yAxisId="right" width={0} orientation="right" domain={[0, domain]} display="none" />
                                 <defs>
                                     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                                         <stop offset="30%" stopColor="#E8E7FF" stopOpacity={0.7} />
                                         <stop offset="70%" stopColor="#FFFFFF" stopOpacity={0.1} />
                                     </linearGradient>
                                 </defs>
-                                <XAxis display="none" dataKey="Time" />
-                                {/* <YAxis yAxisId="left" /> */}
-                                {/* <YAxis yAxisId="right" orientation="right" />  */}
+                                <Bar barSize={4} radius={20} yAxisId="right" dataKey="vol" fill="#000000" opacity={0.1} />
                                 <Tooltip />
-                                <Area type="monotone" dataKey="Price" stroke="#4B40EE" strokeOpacity={1} strokeWidth={2} fillOpacity={1} fill="url(#colorUv)" />
+                                
+                                <Area yAxisId="left" type="monotone" dataKey="Price" stroke="#4B40EE" strokeOpacity={1} strokeWidth={2} fillOpacity={1} className='w-80' fill="url(#colorUv)" />
 
                             </ComposedChart>
                         </ResponsiveContainer>
-                        <ResponsiveContainer width="113%" className="absolute bottom-0 -left-[0.7rem]">
-                            <ComposedChart width={103} data={dataset}>
-                                <YAxis yAxisId="right" orientation="right" domain={[0, domain]} display="none" />
-                                <Bar barSize={4} radius={20}  yAxisId="right" dataKey="vol" fill="#000000" opacity={0.1} />
-                            </ComposedChart>
-                        </ResponsiveContainer>
-
+                        
 
                     </div>
 
