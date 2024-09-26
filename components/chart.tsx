@@ -148,7 +148,7 @@ export const Chart = () => {
         setActiveY(null);
     };
     return (
-        <div className='md:w-[80%] mt-20 flex gap-2 px-20'>
+        <div className='md:w-[80%] mt-20 flex gap-2 px-20 max-md:px-4'>
 
             <div className='md:w-[1000px] max-md:mt-10'>
                 <div className='flex max-md:flex-col md:w-full max-md:overflow-x-scroll'>
@@ -175,7 +175,7 @@ export const Chart = () => {
                 </div>
                 <div className=" w-full h-[500px] bg-white p-4 relative flex gap-2 mt-10">
                     <div className='h-[500px] w-full relative'>
-                        <div className='absolute bottom-0 left-0 grid grid-flow-col grid-cols-6 max-md:w-64 translate-x-[0.8%] border-b-[1px] border-gray-100 w-[100%] translate-y-1 mx-auto h-[500px] '>
+                        <div className='absolute bottom-0 left-0 grid grid-flow-col grid-cols-6 max-md:w-[95%] max-lg:w-[97%] max-xl:w-[98%] translate-x-[0.8%] border-b-[1px] border-gray-100 w-[100%] translate-y-1 mx-auto h-[500px] '>
                             <div className='border-x-[0.5px] border-gray-200'></div>
                             <div className='border-r-[0.5px] border-gray-200'></div>
                             <div className='border-r-[0.5px] border-gray-200'></div>

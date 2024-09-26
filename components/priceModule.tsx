@@ -34,9 +34,9 @@ export const PriceModule = () => {
     },[])
 
   return (
-    <div className='flex flex-col md:gap-8 gap-4 px-20'>
+    <div className='flex flex-col md:gap-8 gap-4 px-20 max-md:px-4'>
         <div className='flex gap-4'>
-            <h2 className='md:text-7xl text-5xl font-semibold'>{Number(price).toLocaleString()}</h2>
+            <h2 className='md:text-7xl text-5xl'>{Number(price).toLocaleString()}</h2>
             <h3 className='text-gray-300 text-xl my-1 font-semibold'>USD</h3>
         </div>
         <div>

@@ -9,8 +9,8 @@ export const ButtonSection = () => {
     const[selected, setSelected] = useState<string>("Chart");
 
   return (
-    <div className='md:mt-12 mt-8'>
-        <div className='flex max-md:absolute px-20 max-md:left-0 max-md:border-b-[1px] border-gray-100 md:relative w-screen max-md:overflow-x-scroll'>
+    <div className='md:mt-12 mt-8 max-md:mx-auto'>
+        <div className='flex max-md:absolute px-20 max-md:px-4 max-md:left-0 max-md:border-b-[1px] border-gray-100 md:relative w-screen max-md:overflow-x-scroll'>
             <button onClick={()=>{setSelected("Summary")}} className={`h-16 flex md:text-xl text-md items-center justify-center px-4 duration-150 ${selected == "Summary" ? "text-black border-b-[6px] border-b-indigo-600" : "text-gray-400"} `}>Summary</button>
             <button onClick={()=>{setSelected("Chart")}} className={`h-16 flex md:text-xl text-md items-center justify-center px-4 duration-150 ${selected == "Chart" ? "text-black border-b-[6px] border-b-indigo-600" : "text-gray-400"} `}>Chart</button>
             <button onClick={()=>{setSelected("Statistics")}} className={`h-16 flex md:text-xl text-md items-center justify-center px-4 duration-150 ${selected == "Statistics" ? "text-black border-b-[6px] border-b-indigo-600" : "text-gray-400"} `}>Statistics</button>
@@ -21,7 +21,7 @@ export const ButtonSection = () => {
         </div>
 
         {selected == "Chart" && <Chart/>}
-        {selected == "Summary" && <Summary/>}
+        {selected == "Summary" && <div className='w-full flex justify-center items-center'> <Summary/> </div>}
 
     </div>
   )
