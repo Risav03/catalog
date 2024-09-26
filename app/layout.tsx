@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` ${circularStd.variable} antialiased`}
+        className={` ${circularStd.className} antialiased`}
       >
         {children}
       </body>
