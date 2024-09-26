@@ -5,7 +5,7 @@ import "./globals.css";
 const circularStd = localFont({
   src: "./fonts/CircularStd.ttf",
   variable: "--font-circular-std",
-  weight: "100 900",
+  weight: "100 200 300 700",
 });
 
 export const metadata: Metadata = {
