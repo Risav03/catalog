@@ -146,7 +146,7 @@ export const Chart = () => {
                     <div className='h-[500px] w-full relative'>
 
                         <div className="relative w-full h-full">
-                            <div className="absolute xl:-left-[1.8rem] -left-8 max-md:w-full max-lg:w-[87.5%] max-xl:w-[90%] xl:w-[90.8%] max-[1440px]:w-[94.5%] min-[1440px]:w-[93%] min-[1850px]:w-[94%] min-[2100px]:w-[95.3%] h-full -translate-y-10 grid grid-flow-col grid-cols-6 inset-0 border-x-[1px] border-b-[1px] border-gray-100 pointer-events-none m-10">
+                            <div className="absolute xl:-left-[1.8rem] -left-8 max-md:w-full max-lg:w-[87.5%] max-xl:w-[90%] xl:w-[90.8%] max-[1440px]:w-[93.5%] min-[1440px]:w-[91.6%] min-[1700px]:w-[94%] min-[2100px]:w-[95.3%] h-full -translate-y-10 grid grid-flow-col grid-cols-6 inset-0 border-x-[1px] border-b-[1px] border-gray-100 pointer-events-none m-10">
                                 <div className='border-x-[0.5px] border-gray-200'></div>
                                 <div className='border-r-[0.5px] border-gray-200'></div>
                                 <div className='border-r-[0.5px] border-gray-200'></div>
