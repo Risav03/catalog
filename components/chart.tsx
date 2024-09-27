@@ -132,7 +132,7 @@ export const Chart = () => {
                         </button>
                     </div>
 
-                    <div className='flex gap-2 max-md:flex-wrap max-md:justify-center md:w-[70%] items-end justify-end'>
+                    <div className='flex gap-2 max-md:flex-wrap max-md:justify-center md:w-[65%] items-end justify-end'>
                         <button onClick={() => { setFetchInterval("1d"); setDomain(500) }} className={` duration-200 ${fetchInterval == "1d" ? "text-white bg-indigo-600" : "text-gray-600 hover:bg-gray-100"} h-10 px-4 rounded-lg `}>1d</button>
                         <button onClick={() => { setFetchInterval("3d"); setDomain(1500) }} className={` duration-200 ${fetchInterval == "3d" ? "text-white bg-indigo-600" : "text-gray-600 hover:bg-gray-100"} h-10 px-4 rounded-lg `}>3d</button>
                         <button onClick={() => { setFetchInterval("1w"); setDomain(3500) }} className={` duration-200 ${fetchInterval == "1w" ? "text-white bg-indigo-600" : "text-gray-600 hover:bg-gray-100"} h-10 px-4 rounded-lg `}>1w</button>
