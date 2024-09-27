@@ -9,8 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        btc:{
+          disabled: "#6F7177",
+          purple:"#4B40EE"
+        },
+        
       },
     },
   },

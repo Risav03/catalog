@@ -37,10 +37,10 @@ export const PriceModule = () => {
     <div className='flex flex-col md:gap-8 gap-4 px-20 max-md:px-4'>
         <div className='flex gap-4'>
             <h2 className='md:text-7xl text-5xl'>{Number(price).toLocaleString()}</h2>
-            <h3 className='text-gray-300 text-xl my-1 font-semibold'>USD</h3>
+            <h3 className='text-[#BDBEBF] text-xl my-1 font-semibold'>USD</h3>
         </div>
         <div>
-            <h2 className={`${priceChange[0] == "-" ? "text-red-500" : "text-green-500"} text-lg`}>
+            <h2 className={`${priceChange[0] == "-" ? "text-red-500" : "text-[#67BF6B]"} text-lg`}>
                {priceChange[0] == "-" ? "-" : "+"} {(Number(priceChange)).toFixed(2).toLocaleString()} ({(Number(percent)).toFixed(2).toLocaleString()}%)
             </h2>
         </div>
