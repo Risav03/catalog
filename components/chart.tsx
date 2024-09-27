@@ -40,7 +40,7 @@ const CustomReferenceLineLabel = ({ value, viewBox }: { value: number; viewBox: 
                     height={40}
                     rx={10}
                     ry={10}
-                    fill="#000000"
+                    fill="#1A243A"
                 />
                 <text
                     x={viewBox.width + 25}
