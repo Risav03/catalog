@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { GlobalContextProvider } from "@/context/MainContext";
 
 const circularStd = localFont({
   src: "./fonts/CircularStd.ttf",
@@ -42,7 +43,9 @@ export default function RootLayout({
       <body
         className={` ${circularStd.className} antialiased`}
       >
-        {children}
+        <GlobalContextProvider>
+          {children}
+        </GlobalContextProvider>
       </body>
     </html>
   );

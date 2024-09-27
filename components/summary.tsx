@@ -6,6 +6,7 @@ import { CiGlobe } from "react-icons/ci";
 import { IoIosDocument } from "react-icons/io";
 import { FaGithub } from "react-icons/fa";
 import { FaReddit } from "react-icons/fa";
+import { useGlobalContext } from '@/context/MainContext';
 
 
 export const Summary = () => {
@@ -27,6 +28,8 @@ export const Summary = () => {
     }
 
     ]
+
+    const {marketCap} = useGlobalContext()
 
     return (
         <div className='mt-10 max-md:mt-20 px-20 max-md:px-4 flex flex-col max-md:mx-auto max-md:items-center'>
@@ -75,7 +78,7 @@ export const Summary = () => {
                 <div className='bg-gray-200 rounded-lg w-full md:w-[30%] md:min-w-64 h-80 flex flex-col p-4 gap-6'>
                     <div>
                         <h2 className='text-xl text-gray-600'>Market Cap</h2>
-                        <h2 className='font-semibold'>$1.28T</h2>
+                        <h2 className='font-semibold'>{marketCap}</h2>
                     </div>
                     <div>
                         <h2 className='text-xl text-gray-600'>24Hr Volume</h2>

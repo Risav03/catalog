@@ -89,7 +89,6 @@ export const Chart = () => {
             })
 
             setLastPrice(datasetSubarr[49].Price)
-            console.log(datasetSubarr);
             setDataset(datasetSubarr);
 
         }
@@ -135,7 +134,7 @@ export const Chart = () => {
                     <div className='flex gap-2 max-md:flex-wrap max-md:justify-center md:w-[62%] items-end justify-end'>
                         <button onClick={() => { setFetchInterval("1d"); setDomain(500) }} className={` duration-200 ${fetchInterval == "1d" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1d</button>
                         <button onClick={() => { setFetchInterval("3d"); setDomain(1500) }} className={` duration-200 ${fetchInterval == "3d" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>3d</button>
-                        <button onClick={() => { setFetchInterval("1w"); setDomain(3500) }} className={` duration-200 ${fetchInterval == "1w" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1w</button>
+                        <button onClick={() => { setFetchInterval("1w"); setDomain(5000) }} className={` duration-200 ${fetchInterval == "1w" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1w</button>
                         <button onClick={() => { setFetchInterval("1M"); setDomain(500000) }} className={` duration-200 ${fetchInterval == "1M" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1m</button>
                         <button className={` cursor-not-allowed duration-200 ${fetchInterval == "6m" ? "text-white bg-[#4B40EE]" : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>6m</button>
                         <button className={` cursor-not-allowed duration-200 ${fetchInterval == "1y" ? "text-white bg-[#4B40EE]" : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>1y</button>
@@ -145,7 +144,7 @@ export const Chart = () => {
                 <div className=" w-full h-[500px] bg-white p-4 relative flex gap-2 mt-10">
                     <div className='h-[500px] w-full relative'>
 
-                        <div className="relative w-full h-full">
+                        <div className="relative w-full max-md:w-[110%] h-full">
                             <div className="absolute xl:-left-[1.8rem] -left-8 max-md:w-full max-lg:w-[87.5%] max-xl:w-[90%] xl:w-[90.8%] max-[1440px]:w-[93.5%] min-[1440px]:w-[91.6%] min-[1700px]:w-[94%] min-[2100px]:w-[95.3%] h-full -translate-y-10 grid grid-flow-col grid-cols-6 inset-0 border-x-[1px] border-b-[1px] border-gray-100 pointer-events-none m-10">
                                 <div className='border-x-[0.5px] border-gray-200'></div>
                                 <div className='border-r-[0.5px] border-gray-200'></div>

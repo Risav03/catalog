@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { Chart } from './chart';
 import { Summary } from './summary';
+import { Statistics } from './statistics';
 
 export const ButtonSection = () => {
 
@@ -17,11 +18,12 @@ export const ButtonSection = () => {
             <button onClick={()=>{setSelected("Analysis")}} className={`h-16 flex md:text-[18px] text-md items-center justify-center px-4 duration-150 ${selected == "Analysis" ? " border-b-[6px] border-b-[#4B40EE]" : "text-btc-disabled"} `}>Analysis</button>
             <button onClick={()=>{setSelected("Settings")}} className={`h-16 flex md:text-[18px] text-md items-center justify-center px-4 duration-150 ${selected == "Settings" ? " border-b-[6px] border-b-[#4B40EE]" : "text-btc-disabled"} `}>Settings</button>
 
-            <div className='absolute -left-20 bottom-0 w-screen h-[0.1rem] bg-gray-100'></div>
+            <div className='absolute -left-20 bottom-0 w-[110vw] h-[0.1rem] bg-gray-100'></div>
         </div>
 
         {selected == "Chart" && <Chart/>}
         {selected == "Summary" && <div className='w-full flex justify-center items-center'> <Summary/> </div>}
+        {selected == "Statistics" && <Statistics/>}
 
     </div>
   )
