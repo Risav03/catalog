@@ -124,29 +124,29 @@ export const Chart = () => {
                     <div className='flex gap-6 md:w-[30%] max-md:justify-center max-md:items-center'>
                         <button className='flex gap-2 hover:bg-gray-100 duration-200 rounded-lg px-4 py-2'>
                             <Image src={fullscreen} alt='fullscreen' className='w-6 h-6' />
-                            <h3 className='text-btc-disabled max-md:hidden '>Fullscreen</h3>
+                            <h3 className='text-btc-disabled max-md:hidden md:text-[18px] '>Fullscreen</h3>
                         </button>
                         <button className='flex gap-2 hover:bg-gray-100 duration-200 rounded-lg px-4 py-2'>
                             <Image src={compare} alt='fullscreen' className='w-6 h-6' />
-                            <h3 className='text-btc-disabled  max-md:hidden'>Compare</h3>
+                            <h3 className='text-btc-disabled  max-md:hidden md:text-[18px]'>Compare</h3>
                         </button>
                     </div>
 
-                    <div className='flex gap-2 max-md:flex-wrap max-md:justify-center md:w-[65%] items-end justify-end'>
-                        <button onClick={() => { setFetchInterval("1d"); setDomain(500) }} className={` duration-200 ${fetchInterval == "1d" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg `}>1d</button>
-                        <button onClick={() => { setFetchInterval("3d"); setDomain(1500) }} className={` duration-200 ${fetchInterval == "3d" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg `}>3d</button>
-                        <button onClick={() => { setFetchInterval("1w"); setDomain(3500) }} className={` duration-200 ${fetchInterval == "1w" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg `}>1w</button>
-                        <button onClick={() => { setFetchInterval("1M"); setDomain(500000) }} className={` duration-200 ${fetchInterval == "1M" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg `}>1m</button>
-                        <button className={` cursor-not-allowed duration-200 ${fetchInterval == "6m" ? "text-white bg-[#4B40EE]" : "text-gray-400 "} h-10 px-4 rounded-lg `}>6m</button>
-                        <button className={` cursor-not-allowed duration-200 ${fetchInterval == "1y" ? "text-white bg-[#4B40EE]" : "text-gray-400 "} h-10 px-4 rounded-lg `}>1y</button>
-                        <button className={` cursor-not-allowed duration-200 ${fetchInterval == "1y" ? "text-white bg-[#4B40EE]" : "text-gray-400 "} h-10 px-4 rounded-lg `}>max</button>
+                    <div className='flex gap-2 max-md:flex-wrap max-md:justify-center md:w-[62%] items-end justify-end'>
+                        <button onClick={() => { setFetchInterval("1d"); setDomain(500) }} className={` duration-200 ${fetchInterval == "1d" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1d</button>
+                        <button onClick={() => { setFetchInterval("3d"); setDomain(1500) }} className={` duration-200 ${fetchInterval == "3d" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>3d</button>
+                        <button onClick={() => { setFetchInterval("1w"); setDomain(3500) }} className={` duration-200 ${fetchInterval == "1w" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1w</button>
+                        <button onClick={() => { setFetchInterval("1M"); setDomain(500000) }} className={` duration-200 ${fetchInterval == "1M" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1m</button>
+                        <button className={` cursor-not-allowed duration-200 ${fetchInterval == "6m" ? "text-white bg-[#4B40EE]" : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>6m</button>
+                        <button className={` cursor-not-allowed duration-200 ${fetchInterval == "1y" ? "text-white bg-[#4B40EE]" : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>1y</button>
+                        <button className={` cursor-not-allowed duration-200 ${fetchInterval == "1y" ? "text-white bg-[#4B40EE]" : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>max</button>
                     </div>
                 </div>
                 <div className=" w-full h-[500px] bg-white p-4 relative flex gap-2 mt-10">
                     <div className='h-[500px] w-full relative'>
 
                         <div className="relative w-full h-full">
-                            <div className="absolute xl:-left-[1.8rem] -left-8 max-md:w-full max-lg:w-[87.5%] max-xl:w-[90%] xl:w-[90.8%] 2xl:w-[95.5%] h-full -translate-y-10 grid grid-flow-col grid-cols-6 inset-0 border-x-[1px] border-b-[1px] border-gray-100 pointer-events-none m-10">
+                            <div className="absolute xl:-left-[1.8rem] -left-8 max-md:w-full max-lg:w-[87.5%] max-xl:w-[90%] xl:w-[90.8%] max-[1440px]:w-[94.5%] min-[1440px]:w-[93%] min-[1850px]:w-[94%] min-[2100px]:w-[95.3%] h-full -translate-y-10 grid grid-flow-col grid-cols-6 inset-0 border-x-[1px] border-b-[1px] border-gray-100 pointer-events-none m-10">
                                 <div className='border-x-[0.5px] border-gray-200'></div>
                                 <div className='border-r-[0.5px] border-gray-200'></div>
                                 <div className='border-r-[0.5px] border-gray-200'></div>
