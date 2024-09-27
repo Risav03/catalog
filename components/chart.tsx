@@ -32,7 +32,7 @@ const CustomLabel = ({ active, payload, labelStyle }: any) => {
 const CustomReferenceLineLabel = ({ value, viewBox, lastPrice }: { value: number; viewBox: any, lastPrice:number }) => {
     return (
         <>
-        <g className='-translate-y-[0.55rem] absolute z-50'>
+        <g className='-translate-y-[0.55rem] absolute z-[1000]'>
             <rect
                 x={viewBox.width - 25}
                 y={viewBox.y - 10}
@@ -54,43 +54,9 @@ const CustomReferenceLineLabel = ({ value, viewBox, lastPrice }: { value: number
                 {value}
             </text>
         </g>
-        <g className='-translate-y-[0.55rem] absolute z-50'>
-            <rect
-                x={viewBox.width - 25}
-                y={85}
-                width={100}
-                height={40}
-                rx={10}
-                ry={10}
-                fill="#4B40EE"
-            />
-            <text
-                x={viewBox.width + 25}
-                y={85+20}
-                textAnchor="middle"
-                fill="#FFFFFF"
-                fontSize={16}
-                dy={4}
-                fontWeight={800}
-            >
-                {lastPrice}
-            </text>
-        </g>
         </>
     );
 };
-
-const CustomLastVertexLabel = ({ x, y, value }: { x: number; y: number; value: number }) => {
-    return (
-      <g transform={`translate(${x},${y})`}>
-        <circle cx={0} cy={0} r={4} fill="#4B40EE" />
-        <rect x={5} y={-20} width={80} height={30} rx={4} ry={4} fill="#000000" />
-        <text x={45} y={-2} textAnchor="middle" fill="#FFFFFF" fontSize={12}>
-          {Number(value).toFixed(2)}
-        </text>
-      </g>
-    );
-  };
 
 export const Chart = () => {
 
@@ -99,7 +65,8 @@ export const Chart = () => {
     const [domain, setDomain] = useState<number>(500)
 
     const [dataset, setDataset] = useState([])
-    const[ lastPrice, setLastPrice] = useState<string>("")
+    const[ lastPrice, setLastPrice] = useState<string>("");
+    const[blur, setBlur] = useState(false);
 
     const link = `https://api.binance.us/api/v3/uiKlines?symbol=BTCUSDT&interval=${fetchInterval}&limit=30`
 
@@ -139,12 +106,14 @@ export const Chart = () => {
     const [activeY, setActiveY] = useState(null);
 
     const handleMouseMove = (props: any) => {
+        setBlur(true)
         if (props && props.activePayload && props.activePayload[0]) {
             setActiveY(props.activePayload[1].value);
         }
     };
 
     const handleMouseLeave = () => {
+        setBlur(false)
         setActiveY(null);
     };
     return (
@@ -229,7 +198,9 @@ export const Chart = () => {
                                 )}
                             </ComposedChart>
                         </ResponsiveContainer>
-
+                        <div className={`bg-indigo-600 text-white px-2 md:px-4 py-2 rounded-lg absolute top-[4.5rem] -z-[0] max-md:-right-5 -right-[6.2rem] md:w-[6.5rem] w-[5rem] ${blur ? "opacity-25":"opacity-100"} duration-200 flex items-center justify-center`}>
+                            {lastPrice}
+                        </div>
                     </div>
 
                 </div>
