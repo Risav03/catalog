@@ -29,31 +29,31 @@ const CustomLabel = ({ active, payload, labelStyle }: any) => {
 };
 
 
-const CustomReferenceLineLabel = ({ value, viewBox }: { value: number; viewBox: any, lastPrice:number }) => {
+const CustomReferenceLineLabel = ({ value, viewBox }: { value: number; viewBox: any, lastPrice: number }) => {
     return (
         <>
-        <g className='-translate-y-[0.55rem] absolute z-[1000]'>
-            <rect
-                x={viewBox.width - 25}
-                y={viewBox.y - 10}
-                width={100}
-                height={40}
-                rx={10}
-                ry={10}
-                fill="#000000"
-            />
-            <text
-                x={viewBox.width + 25}
-                y={viewBox.y+10}
-                textAnchor="middle"
-                fill="#FFFFFF"
-                fontSize={16}
-                dy={4}
-                fontWeight={800}
-            >
-                {Number(value).toLocaleString()}
-            </text>
-        </g>
+            <g className='-translate-y-[0.55rem] absolute z-[1000]'>
+                <rect
+                    x={viewBox.width - 25}
+                    y={viewBox.y - 10}
+                    width={100}
+                    height={40}
+                    rx={10}
+                    ry={10}
+                    fill="#000000"
+                />
+                <text
+                    x={viewBox.width + 25}
+                    y={viewBox.y + 10}
+                    textAnchor="middle"
+                    fill="#FFFFFF"
+                    fontSize={16}
+                    dy={4}
+                    fontWeight={800}
+                >
+                    {Number(value).toLocaleString()}
+                </text>
+            </g>
         </>
     );
 };
@@ -65,8 +65,8 @@ export const Chart = () => {
     const [domain, setDomain] = useState<number>(500)
 
     const [dataset, setDataset] = useState([])
-    const[ lastPrice, setLastPrice] = useState<string>("");
-    const[blur, setBlur] = useState(false);
+    const [lastPrice, setLastPrice] = useState<string>("");
+    const [blur, setBlur] = useState(false);
 
     const link = `https://api.binance.us/api/v3/uiKlines?symbol=BTCUSDT&interval=${fetchInterval}&limit=50`
 
@@ -79,13 +79,13 @@ export const Chart = () => {
             jsonRes.map((item: any, i: number) => {
                 const date = new Date(item[6])
 
-                const Time = `${date.getDate()}/${date.getMonth()+1}`
+                const Time = `${date.getDate()}/${date.getMonth() + 1}`
                 const Price = Number(item[4]).toFixed(2);
                 const vol = Number(item[5]).toFixed(2)
 
                 datasetSubarr.push({ Time, Price, vol })
 
-                
+
             })
 
             setLastPrice(datasetSubarr[49].Price)
@@ -117,9 +117,9 @@ export const Chart = () => {
         setActiveY(null);
     };
     return (
-        <div className='md:w-[80%] mt-20 flex gap-2 px-20 max-md:px-4'>
+        <div className='md:w-[85%] mt-20 flex gap-2 px-20 max-md:px-4'>
 
-            <div className='md:w-[1000px] max-md:mt-10'>
+            <div className='w-full max-md:mt-10'>
                 <div className='flex max-md:flex-col md:w-full max-md:overflow-x-scroll'>
                     <div className='flex gap-6 md:w-[30%] max-md:justify-center max-md:items-center'>
                         <button className='flex gap-2 hover:bg-gray-100 duration-200 rounded-lg px-4 py-2'>
@@ -144,61 +144,60 @@ export const Chart = () => {
                 </div>
                 <div className=" w-full h-[500px] bg-white p-4 relative flex gap-2 mt-10">
                     <div className='h-[500px] w-full relative'>
-                        <div className='absolute bottom-0 left-0 grid grid-flow-col grid-cols-6 max-md:w-[95%] max-lg:w-[97%] max-xl:w-[98%] translate-x-[0.8%] border-b-[1px] border-gray-100 w-[100%] translate-y-1 mx-auto h-[500px] '>
-                            <div className='border-x-[0.5px] border-gray-200'></div>
-                            <div className='border-r-[0.5px] border-gray-200'></div>
-                            <div className='border-r-[0.5px] border-gray-200'></div>
-                            <div className='border-r-[0.5px] border-gray-200'></div>
-                            <div className='border-r-[0.5px] border-gray-200'></div>
-                            <div className='border-r-[0.5px] border-gray-200'></div>
+
+                        <div className="relative w-full h-full">
+                            <div className="absolute -left-8 max-md:w-full max-lg:w-[87.5%] max-xl:w-[90%] xl:w-[92%] 2xl:w-[95.5%] h-full -translate-y-10 grid grid-flow-col grid-cols-6 inset-0 border-x-[1px] border-b-[1px] border-gray-100 pointer-events-none m-10">
+                                <div className='border-x-[0.5px] border-gray-200'></div>
+                                <div className='border-r-[0.5px] border-gray-200'></div>
+                                <div className='border-r-[0.5px] border-gray-200'></div>
+                                <div className='border-r-[0.5px] border-gray-200'></div>
+                                <div className='border-r-[0.5px] border-gray-200'></div>
+                                <div className='border-r-[0.5px] border-gray-200'></div>
+                            </div>
+                            <ResponsiveContainer width="100%" height="100%" >
+                                <ComposedChart
+                                    data={dataset}
+                                    margin={{ top: 10, right: 80, bottom: 10, left: 10 }}
+                                    onMouseMove={handleMouseMove}
+                                    onMouseLeave={handleMouseLeave}
+                                >
+                                    <XAxis dataKey="Time" hide />
+                                    <YAxis yAxisId="left" hide />
+                                    <YAxis yAxisId="right" orientation="right" domain={[0, domain]} hide />
+                                    <defs>
+                                        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="30%" stopColor="#E8E7FF" stopOpacity={0.7} />
+                                            <stop offset="70%" stopColor="#FFFFFF" stopOpacity={0.1} />
+                                        </linearGradient>
+                                    </defs>
+                                    <Bar
+                                        barSize={4}
+                                        radius={20}
+                                        yAxisId="right"
+                                        dataKey="vol"
+                                        fill="#000000"
+                                        opacity={0.1}
+                                    />
+                                    <Tooltip content={<CustomLabel />} />
+                                    <Area
+                                        yAxisId="left"
+                                        type="monotone"
+                                        dataKey="Price"
+                                        stroke="#4B40EE"
+                                        strokeWidth={2}
+                                        fillOpacity={1}
+                                        fill="url(#colorUv)"
+                                    />
+
+                                    {activeY !== null && (
+                                        <ReferenceLine yAxisId="left" y={activeY} stroke="#000000" strokeDasharray="3 3" className='z-10'>
+                                            <Label content={<CustomReferenceLineLabel value={activeY} lastPrice={Number(lastPrice)} viewBox={{}} />} position="right" />
+                                        </ReferenceLine>
+                                    )}
+                                </ComposedChart>
+                            </ResponsiveContainer>
                         </div>
-
-                        <ResponsiveContainer width="110%" className="w-full h-full flex items-center justify-center pb-1 px-0 ">
-                            <ComposedChart
-                                data={dataset}
-                                margin={{ top: 0, right: 80, bottom: 0, left: 0 }}
-                                onMouseMove={handleMouseMove}
-                                onMouseLeave={handleMouseLeave}
-                                className=''
-                            >   
-                        
-                                <XAxis dataKey="Time" hide />
-                                <YAxis yAxisId="left" width={0} hide />
-                                <YAxis yAxisId="right" className='pr-10' orientation="right" domain={[0, domain]} hide />
-                                <defs>
-                                    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="30%" stopColor="#E8E7FF" stopOpacity={0.7} />
-                                        <stop offset="70%" stopColor="#FFFFFF" stopOpacity={0.1} />
-                                    </linearGradient>
-                                </defs>
-                                <Bar
-                                    barSize={4}
-                                    radius={20}
-                                    yAxisId="right"
-                                    dataKey="vol"
-                                    fill="#000000"
-                                    opacity={0.1}
-                                />
-                                <Tooltip content={<CustomLabel />} />
-                                <Area
-                                    yAxisId="left"
-                                    type="monotone"
-                                    dataKey="Price"
-                                    stroke="#4B40EE"
-                                    strokeWidth={2}
-                                    fillOpacity={1}
-                                    fill="url(#colorUv)"
-                                />
-
-                                
-                                {activeY !== null && (
-                                    <ReferenceLine yAxisId="left" y={activeY} stroke="#4B40EE" strokeDasharray="3 3" className='absolute z-50'>
-                                        <Label content={<CustomReferenceLineLabel value={activeY} lastPrice={Number(lastPrice)} viewBox={{}} />} position="right" />
-                                    </ReferenceLine>
-                                )}
-                            </ComposedChart>
-                        </ResponsiveContainer>
-                        <div className={`bg-indigo-600 text-white px-2 md:px-4 py-2 rounded-lg absolute top-[4.5rem] -z-[0] max-md:-right-5 -right-[6.2rem] md:w-[6.5rem] w-[5rem] ${blur ? "opacity-25":"opacity-100"} duration-200 flex items-center justify-center`}>
+                        <div className={`bg-indigo-600 text-white px-2 md:px-4 py-2 rounded-lg absolute top-[4.5rem] -z-[0] max-md:-right-5 -right-[0.7rem] md:w-[6.5rem] w-[5rem] ${blur ? "opacity-25" : "opacity-100"} duration-200 flex items-center justify-center`}>
                             {Number(lastPrice).toLocaleString()}
                         </div>
                     </div>
