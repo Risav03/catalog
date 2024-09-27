@@ -18,9 +18,9 @@ const CustomLabel = ({ active, payload, labelStyle }: any) => {
                     ...labelStyle,
                 }}
             >
-                <p>{`Price: $${data?.Price}`}</p>
+                <p>{`Price: $${Number(data?.Price).toLocaleString()}`}</p>
                 <p>{`Date: ${data?.Time} `}</p>
-                <p>{`Volume: ${data?.vol} BTC`}</p>
+                <p>{`Volume: ${Number(data?.vol).toLocaleString()} BTC`}</p>
 
             </div>
         );
@@ -29,7 +29,7 @@ const CustomLabel = ({ active, payload, labelStyle }: any) => {
 };
 
 
-const CustomReferenceLineLabel = ({ value, viewBox, lastPrice }: { value: number; viewBox: any, lastPrice:number }) => {
+const CustomReferenceLineLabel = ({ value, viewBox }: { value: number; viewBox: any, lastPrice:number }) => {
     return (
         <>
         <g className='-translate-y-[0.55rem] absolute z-[1000]'>
@@ -51,7 +51,7 @@ const CustomReferenceLineLabel = ({ value, viewBox, lastPrice }: { value: number
                 dy={4}
                 fontWeight={800}
             >
-                {value}
+                {Number(value).toLocaleString()}
             </text>
         </g>
         </>
@@ -68,7 +68,7 @@ export const Chart = () => {
     const[ lastPrice, setLastPrice] = useState<string>("");
     const[blur, setBlur] = useState(false);
 
-    const link = `https://api.binance.us/api/v3/uiKlines?symbol=BTCUSDT&interval=${fetchInterval}&limit=30`
+    const link = `https://api.binance.us/api/v3/uiKlines?symbol=BTCUSDT&interval=${fetchInterval}&limit=50`
 
     async function fetchChart() {
         try {
@@ -79,7 +79,7 @@ export const Chart = () => {
             jsonRes.map((item: any, i: number) => {
                 const date = new Date(item[6])
 
-                const Time = `${date.getDate()}/${date.getMonth()}`
+                const Time = `${date.getDate()}/${date.getMonth()+1}`
                 const Price = Number(item[4]).toFixed(2);
                 const vol = Number(item[5]).toFixed(2)
 
@@ -88,7 +88,7 @@ export const Chart = () => {
                 
             })
 
-            setLastPrice(datasetSubarr[29].Price)
+            setLastPrice(datasetSubarr[49].Price)
             console.log(datasetSubarr);
             setDataset(datasetSubarr);
 
@@ -199,7 +199,7 @@ export const Chart = () => {
                             </ComposedChart>
                         </ResponsiveContainer>
                         <div className={`bg-indigo-600 text-white px-2 md:px-4 py-2 rounded-lg absolute top-[4.5rem] -z-[0] max-md:-right-5 -right-[6.2rem] md:w-[6.5rem] w-[5rem] ${blur ? "opacity-25":"opacity-100"} duration-200 flex items-center justify-center`}>
-                            {lastPrice}
+                            {Number(lastPrice).toLocaleString()}
                         </div>
                     </div>
 
