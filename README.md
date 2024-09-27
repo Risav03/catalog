@@ -1,3 +1,11 @@
+Bitcoin Live price checker with a live BTC Price line chart and other market information.
+
+All Live data is being fetched using Binance's Rest API.
+https://developers.binance.com/docs/binance-spot-api-docs/rest-api
+
+Deployed Link:
+https://bitcoin-price-pi.vercel.app/
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
