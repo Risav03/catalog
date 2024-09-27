@@ -1,7 +1,8 @@
 Bitcoin Live price checker with a live BTC Price line chart and other market information.
 
-All Live data is being fetched using Binance's Rest API.
+All Live data is being fetched using Binance's Rest API & CoinGecko's Rest API.
 https://developers.binance.com/docs/binance-spot-api-docs/rest-api
+https://docs.coingecko.com/reference/endpoint-overview
 
 Deployed Link:
 https://bitcoin-price-pi.vercel.app/
