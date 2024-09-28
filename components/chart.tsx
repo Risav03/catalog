@@ -202,7 +202,7 @@ export const Chart = () => {
 
             <div id="fullscreen_comp" className={`w-full bg-white ${fullscreenMode && "md:p-24 max-md:p-4 translate-x-20 "} `}>
                 <div className='flex max-md:flex-col md:w-full max-md:overflow-x-scroll'>
-                    <div className='flex gap-6 md:w-[30%] max-md:justify-center max-md:items-center'>
+                    <div className='flex gap-6 md:w-[30%] max-md:mb-4 max-md:justify-center max-md:items-center'>
                         <button onClick={() => { handleFullScreen() }} className='flex gap-2 hover:bg-gray-100 duration-200 rounded-lg px-4 h-10 items-center'>
                             {fullscreenMode ? <div className='flex gap-2 items-center'>
                                 <MdCloseFullscreen className='text-btc-disabled text-xl' />
@@ -217,9 +217,9 @@ export const Chart = () => {
                                 <Image src={compare} alt='fullscreen' className={`w-6 h-6 ${compareDiv && "brightness-200 contrast-200"} `} />
                                 <h3 className='  max-md:hidden md:text-[18px]'>Compare</h3>
                             </button>
-                            <div className={`bg-gray-100 ${compareDiv ? " translate-x-[8.6rem] " : "translate-x-4"} z-0 duration-200 absolute w-20 h-10 flex items-center justify-center rounded-r-lg`} >
-                                {pair == "BTCUSDT" ? <button onClick={() => { setCompareDiv(false); setPair("BNBBTC") }} className='flex gap-2 items-center'><Image src={bnb} alt='bnb' className='w-6 h-6' />BNB</button> :
-                                    <button onClick={() => { setCompareDiv(false); setPair("BTCUSDT") }} className='flex gap-2 items-center'><Image src={tether} alt='bnb' className='w-6 h-6' />USD</button>
+                            <div className={`bg-gray-100 ${compareDiv ? "translate-x-[3rem] md:translate-x-[8.6rem] " : "translate-x-1"} z-0 duration-200 absolute w-[3rem] md:w-20 h-10 flex items-center justify-center rounded-r-lg`} >
+                                {pair == "BTCUSDT" ? <button onClick={() => { setCompareDiv(false); setPair("BNBBTC") }} className='flex gap-2 items-center'><Image src={bnb} alt='bnb' className='w-6 h-6' /></button> :
+                                    <button onClick={() => { setCompareDiv(false); setPair("BTCUSDT") }} className='flex gap-2 items-center'><Image src={tether} alt='bnb' className='w-6 h-6' /></button>
                                 }
                             </div>
                         </div>
