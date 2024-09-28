@@ -47,6 +47,10 @@ type GlobalContextType = {
     setAtlPercent: Dispatch<SetStateAction<string>>;
     theme: number;
     setTheme: Dispatch<SetStateAction<number>>;
+    communityPos: string;
+    setCommunityPos: Dispatch<SetStateAction<string>>;
+    communityNeg: string;
+    setCommunityNeg: Dispatch<SetStateAction<string>>;
   };
   
   const GlobalContext = createContext<GlobalContextType>({
@@ -84,6 +88,10 @@ type GlobalContextType = {
     setAthPercent: () => {},
     atlPercent: "",
     setAtlPercent: () => {},
+    communityPos: "",
+    setCommunityPos: () => {},
+    communityNeg: "",
+    setCommunityNeg: () => {},
     theme: 0,
     setTheme: () => {},
   });
@@ -105,6 +113,10 @@ export const GlobalContextProvider = ({ children }:{children:ReactNode}) => {
     const[circulatingSupply, setCirculatingSupply] = useState<string>("")
     const[dailyLow, setDailyLow] = useState<string>("")
     const[dailyHigh, setDailyHigh] = useState<string>("")
+
+    const[communityPos, setCommunityPos] = useState<string>("")
+    const[communityNeg, setCommunityNeg] = useState<string>("")
+
 
     const[volume, setVolume] = useState<string>("")
 
@@ -146,6 +158,9 @@ export const GlobalContextProvider = ({ children }:{children:ReactNode}) => {
 
             setDailyHigh(`$${jsonRes.market_data.high_24h.usd.toLocaleString()}`);
             setDailyLow(`$${jsonRes.market_data.low_24h.usd.toLocaleString()}`);
+
+            setCommunityPos(`${jsonRes.sentiment_votes_up_percentage}%`);
+            setCommunityNeg(`${jsonRes.sentiment_votes_down_percentage}%`)
         }
         catch(err){
             console.log(err);
@@ -173,7 +188,7 @@ export const GlobalContextProvider = ({ children }:{children:ReactNode}) => {
     },[])
 
   return (
-    <GlobalContext.Provider value={{ marketCap, setMarketCap, theme, setTheme, marketCapPercent, setMarketCapPercent, ath, setAth, atl, setAtl, circulatingSupply, setCirculatingSupply, dailyLow, setDailyLow, dailyChange, setDailyChange, dailyHigh, setDailyHigh, weeklyChange, setWeeklyChange, monthlyChange, setMonthlyChange, yearlyChange, setYearlyChange, totalSupply, setTotalSupply, volume, setVolume, athDate, setAthDate, atlDate, setAtlDate, athPercent, setAthPercent, atlPercent, setAtlPercent}}>
+    <GlobalContext.Provider value={{ marketCap, setMarketCap, communityPos, setCommunityPos, communityNeg, setCommunityNeg, theme, setTheme, marketCapPercent, setMarketCapPercent, ath, setAth, atl, setAtl, circulatingSupply, setCirculatingSupply, dailyLow, setDailyLow, dailyChange, setDailyChange, dailyHigh, setDailyHigh, weeklyChange, setWeeklyChange, monthlyChange, setMonthlyChange, yearlyChange, setYearlyChange, totalSupply, setTotalSupply, volume, setVolume, athDate, setAthDate, atlDate, setAtlDate, athPercent, setAthPercent, atlPercent, setAtlPercent}}>
       {children}
     </GlobalContext.Provider>
   );

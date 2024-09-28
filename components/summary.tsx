@@ -32,7 +32,7 @@ export const Summary = () => {
     const {marketCap, volume, circulatingSupply} = useGlobalContext()
 
     return (
-        <div className='mt-10 max-md:mt-20 px-20 mb-10 max-md:px-4 flex flex-col max-md:mx-auto max-md:items-center'>
+        <div className=' mt-20 max-md:mt-10 px-20 max-md:px-4 flex flex-col max-md:mx-auto max-md:items-center'>
             <div className='flex gap-2 items-center justify-start'>
                 <Image src={btc} alt='btc' className='rounded-full w-10' />
                 <h2 className='font-bold text-2xl'>Bitcoin (BTC)</h2>
