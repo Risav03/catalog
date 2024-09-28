@@ -170,7 +170,7 @@ export const Chart = () => {
                                     <YAxis yAxisId="right" orientation="right" domain={[0, domain]} hide />
                                     <defs>
                                         <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="30%" stopColor={colours[theme]} stopOpacity={0.3} />
+                                            <stop offset="30%" stopColor={colours[theme]} stopOpacity={0.07} />
                                             <stop offset="70%" stopColor="#FFFFFF" stopOpacity={0.1} />
                                         </linearGradient>
                                     </defs>
