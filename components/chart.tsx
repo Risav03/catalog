@@ -127,7 +127,7 @@ export const Chart = () => {
             const res = await fetch(link);
             const jsonRes = await res.json();
             const datasetSubarr: any = []
-            console.log("fetch", jsonRes)
+
             jsonRes.map((item: any, i: number) => {
                 const date = new Date(item[6])
 

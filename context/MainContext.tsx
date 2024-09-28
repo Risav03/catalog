@@ -136,7 +136,7 @@ export const GlobalContextProvider = ({ children }:{children:ReactNode}) => {
             const res = await fetch("https://api.coingecko.com/api/v3/coins/bitcoin");
             
             const jsonRes = await res.json();
-            console.log(jsonRes);
+
             setMarketCap(`$${(jsonRes.market_data.market_cap.usd).toLocaleString()}`);
             setMarketCapPercent(`${(jsonRes.market_data.market_cap_change_percentage_24h.toFixed(2))}%`);
 
