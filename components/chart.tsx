@@ -4,6 +4,7 @@ import Image from 'next/image';
 import fullscreen from "@/assets/fullscreen.png"
 import compare from "@/assets/compare.png"
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Bar, ComposedChart, Area, BarChart, CartesianGrid, Legend, Label, ReferenceLine } from 'recharts';
+import { useGlobalContext } from '@/context/MainContext';
 
 
 const CustomLabel = ({ active, payload, labelStyle }: any) => {
@@ -61,7 +62,7 @@ const CustomReferenceLineLabel = ({ value, viewBox }: { value: number; viewBox: 
 export const Chart = () => {
 
     const [fetchInterval, setFetchInterval] = useState<string>("1d");
-
+    const{theme} = useGlobalContext()
     const [domain, setDomain] = useState<number>(500)
 
     const [dataset, setDataset] = useState([])
@@ -69,6 +70,10 @@ export const Chart = () => {
     const [blur, setBlur] = useState(false);
 
     const link = `https://api.binance.us/api/v3/uiKlines?symbol=BTCUSDT&interval=${fetchInterval}&limit=50`
+
+    const bgColours = ["bg-[#4B40EE]", "bg-teal-600", "bg-blue-600", "bg-orange-600", "bg-purple-600"];
+    const colours = ["#4B40EE", "#0d9489", "#2564eb", "#d97706", "#9233ea"];
+
 
     async function fetchChart() {
         try {
@@ -132,13 +137,13 @@ export const Chart = () => {
                     </div>
 
                     <div className='flex gap-2 max-md:flex-wrap max-md:justify-center md:w-[62%] items-end justify-end'>
-                        <button onClick={() => { setFetchInterval("1d"); setDomain(500) }} className={` duration-200 ${fetchInterval == "1d" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1d</button>
-                        <button onClick={() => { setFetchInterval("3d"); setDomain(1500) }} className={` duration-200 ${fetchInterval == "3d" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>3d</button>
-                        <button onClick={() => { setFetchInterval("1w"); setDomain(5000) }} className={` duration-200 ${fetchInterval == "1w" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1w</button>
-                        <button onClick={() => { setFetchInterval("1M"); setDomain(500000) }} className={` duration-200 ${fetchInterval == "1M" ? "text-white bg-[#4B40EE]" : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1m</button>
-                        <button className={` cursor-not-allowed duration-200 ${fetchInterval == "6m" ? "text-white bg-[#4B40EE]" : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>6m</button>
-                        <button className={` cursor-not-allowed duration-200 ${fetchInterval == "1y" ? "text-white bg-[#4B40EE]" : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>1y</button>
-                        <button className={` cursor-not-allowed duration-200 ${fetchInterval == "1y" ? "text-white bg-[#4B40EE]" : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>max</button>
+                        <button onClick={() => { setFetchInterval("1d"); setDomain(500) }} className={` duration-200 ${fetchInterval == "1d" ? "text-white " + bgColours[theme] : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1d</button>
+                        <button onClick={() => { setFetchInterval("3d"); setDomain(1500) }} className={` duration-200 ${fetchInterval == "3d" ? "text-white " + bgColours[theme] : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>3d</button>
+                        <button onClick={() => { setFetchInterval("1w"); setDomain(5000) }} className={` duration-200 ${fetchInterval == "1w" ? "text-white " + bgColours[theme] : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1w</button>
+                        <button onClick={() => { setFetchInterval("1M"); setDomain(500000) }} className={` duration-200 ${fetchInterval == "1M" ? "text-white " + bgColours[theme] : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1m</button>
+                        <button className={` cursor-not-allowed duration-200 ${fetchInterval == "6m" ? "text-white" + bgColours[theme] : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>6m</button>
+                        <button className={` cursor-not-allowed duration-200 ${fetchInterval == "1y" ? "text-white " + bgColours[theme] : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>1y</button>
+                        <button className={` cursor-not-allowed duration-200 ${fetchInterval == "1y" ? "text-white " + bgColours[theme] : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>max</button>
                     </div>
                 </div>
                 <div className=" w-full h-[500px] bg-white p-4 relative flex gap-2 mt-10">
@@ -165,7 +170,7 @@ export const Chart = () => {
                                     <YAxis yAxisId="right" orientation="right" domain={[0, domain]} hide />
                                     <defs>
                                         <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="30%" stopColor="#E8E7FF" stopOpacity={0.7} />
+                                            <stop offset="30%" stopColor={colours[theme]} stopOpacity={0.3} />
                                             <stop offset="70%" stopColor="#FFFFFF" stopOpacity={0.1} />
                                         </linearGradient>
                                     </defs>
@@ -182,7 +187,7 @@ export const Chart = () => {
                                         yAxisId="left"
                                         type="monotone"
                                         dataKey="Price"
-                                        stroke="#4B40EE"
+                                        stroke={colours[theme]}
                                         strokeWidth={2}
                                         fillOpacity={1}
                                         fill="url(#colorUv)"
@@ -196,7 +201,7 @@ export const Chart = () => {
                                 </ComposedChart>
                             </ResponsiveContainer>
                         </div>
-                        <div className={`bg-[#4B40EE] text-white px-2 md:px-4 py-2 rounded-lg absolute top-[4.5rem] -z-[0] max-md:-right-5 -right-[0.7rem] md:w-[6.5rem] w-[5rem] ${blur ? "opacity-25" : "opacity-100"} duration-200 flex items-center justify-center`}>
+                        <div className={ bgColours[theme] + ` text-white px-2 md:px-4 py-2 rounded-lg absolute top-[4.5rem] -z-[0] max-md:-right-5 -right-[0.7rem] md:w-[6.5rem] w-[5rem] ${blur ? "opacity-25" : "opacity-100"} duration-200 flex items-center justify-center`}>
                             {Number(lastPrice).toLocaleString()}
                         </div>
                     </div>

@@ -45,6 +45,8 @@ type GlobalContextType = {
     setAtlDate: Dispatch<SetStateAction<string>>;
     atlPercent: string;
     setAtlPercent: Dispatch<SetStateAction<string>>;
+    theme: number;
+    setTheme: Dispatch<SetStateAction<number>>;
   };
   
   const GlobalContext = createContext<GlobalContextType>({
@@ -81,7 +83,9 @@ type GlobalContextType = {
     athPercent: "",
     setAthPercent: () => {},
     atlPercent: "",
-    setAtlPercent: () => {}
+    setAtlPercent: () => {},
+    theme: 0,
+    setTheme: () => {},
   });
 
 
@@ -109,7 +113,9 @@ export const GlobalContextProvider = ({ children }:{children:ReactNode}) => {
     const[monthlyChange, setMonthlyChange] = useState<string>("")
     const[yearlyChange, setYearlyChange] = useState<string>("")
 
-    const[totalSupply, setTotalSupply] = useState<string>("")
+    const[totalSupply, setTotalSupply] = useState<string>("");
+
+    const[theme, setTheme] = useState<number>(0);
 
 
 
@@ -130,7 +136,7 @@ export const GlobalContextProvider = ({ children }:{children:ReactNode}) => {
 
             setAthPercent(`${jsonRes.market_data.ath_change_percentage.usd.toFixed(2)}%`)
             setAtlPercent(`${jsonRes.market_data.atl_change_percentage.usd.toFixed(2)}%`)
-            console.log(jsonRes.market_data.price_change_percentage_24h);
+
             setDailyChange(`${jsonRes.market_data.price_change_percentage_24h.toFixed(2)}%`)
             setWeeklyChange(`${jsonRes.market_data.price_change_percentage_7d.toFixed(2)}%`)
             setMonthlyChange(`${jsonRes.market_data.price_change_percentage_30d.toFixed(2)}%`)
@@ -143,13 +149,29 @@ export const GlobalContextProvider = ({ children }:{children:ReactNode}) => {
             console.log(err);
         }
     }
+
+    useEffect(()=>{
+      var theme = localStorage.getItem('theme');
+
+      if(theme == ""){
+        localStorage.setItem('theme', '0');
+        theme = '0';
+      }
+
+      setTheme(Number(theme));
+
+    },[])
+
+    useEffect(()=>{
+      localStorage.setItem('theme', String(theme));
+    },[theme])
     
     useEffect(()=>{
         fetchLiveData();
     },[])
 
   return (
-    <GlobalContext.Provider value={{ marketCap, setMarketCap, marketCapPercent, setMarketCapPercent, ath, setAth, atl, setAtl, circulatingSupply, setCirculatingSupply, dailyLow, setDailyLow, dailyChange, setDailyChange, dailyHigh, setDailyHigh, weeklyChange, setWeeklyChange, monthlyChange, setMonthlyChange, yearlyChange, setYearlyChange, totalSupply, setTotalSupply, volume, setVolume, athDate, setAthDate, atlDate, setAtlDate, athPercent, setAthPercent, atlPercent, setAtlPercent}}>
+    <GlobalContext.Provider value={{ marketCap, setMarketCap, theme, setTheme, marketCapPercent, setMarketCapPercent, ath, setAth, atl, setAtl, circulatingSupply, setCirculatingSupply, dailyLow, setDailyLow, dailyChange, setDailyChange, dailyHigh, setDailyHigh, weeklyChange, setWeeklyChange, monthlyChange, setMonthlyChange, yearlyChange, setYearlyChange, totalSupply, setTotalSupply, volume, setVolume, athDate, setAthDate, atlDate, setAtlDate, athPercent, setAthPercent, atlPercent, setAtlPercent}}>
       {children}
     </GlobalContext.Provider>
   );
