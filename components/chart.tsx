@@ -121,7 +121,7 @@ export const Chart = () => {
         setActiveY(null);
     };
     return (
-        <div className='md:w-[85%] mt-20 flex gap-2 px-20 max-md:px-4'>
+        <div className='md:w-[85%] mt-20 mb-10 flex gap-2 px-20 max-md:px-4'>
 
             <div className='w-full max-md:mt-10'>
                 <div className='flex max-md:flex-col md:w-full max-md:overflow-x-scroll'>

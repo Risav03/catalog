@@ -5,10 +5,10 @@ import React, { useEffect } from 'react'
 
 export const Statistics = () => {
 
-  const { marketCap, ath, athDate, atl, atlDate, circulatingSupply, athPercent, atlPercent, marketCapPercent, dailyChange, weeklyChange, monthlyChange, yearlyChange, dailyLow, dailyHigh } = useGlobalContext()
+  const { marketCap, ath, athDate, atl, atlDate, volume, circulatingSupply, athPercent, atlPercent, marketCapPercent, dailyChange, weeklyChange, monthlyChange, yearlyChange, dailyLow, dailyHigh } = useGlobalContext()
 
   return (
-    <div className='px-20 max-md:px-2 h-screen flex max-md:flex-col gap-4 max-md:mt-28 mt-10'>
+    <div className='px-20 max-md:px-2 h-screen mb-10 flex max-md:flex-col gap-4 max-md:mt-28 mt-10'>
      
       <div className='flex gap-2 flex-col'>
         <div className='py-2 bg-gray-100 relative rounded-lg w-48 max-md:w-full flex items-start max-md:items-center justify-start px-4 flex-col'>
@@ -34,6 +34,10 @@ export const Statistics = () => {
         <div className='w-80 py-2 flex items-center px-4 flex-col bg-gray-100 rounded-lg'>
           <h3 className=''>Circulating Supply</h3>
           <h3 className='text-2xl font-semibold'>{circulatingSupply}</h3>
+        </div>
+        <div className='w-80 py-2 flex items-center px-4 flex-col bg-gray-100 rounded-lg'>
+          <h3 className=''>24H Volume</h3>
+          <h3 className='text-2xl font-semibold'>{volume}</h3>
         </div>
       </div>
 

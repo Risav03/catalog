@@ -15,7 +15,7 @@ export const ButtonSection = () => {
 
 
   return (
-    <div className='md:mt-12 mt-8 max-md:mx-auto'>
+    <div className=' mt-8 max-md:mx-auto pb-20'>
         <div className='flex max-md:absolute px-20 max-md:px-4 max-md:left-0 max-md:border-b-[1px] border-gray-100 md:relative w-screen max-md:overflow-x-scroll'>
             <button onClick={()=>{setSelected("Summary")}} className={`h-16 flex md:text-[18px] text-md items-center justify-center px-4 duration-150 ${selected == "Summary" ? " border-b-[6px] "+borderColours[theme] : " text-btc-disabled"} `}>Summary</button>
             <button onClick={()=>{setSelected("Chart")}} className={`h-16 flex md:text-[18px] text-md items-center justify-center px-4 duration-150 ${selected == "Chart" ? "border-b-[6px] "+borderColours[theme] : "text-btc-disabled"} `}>Chart</button>

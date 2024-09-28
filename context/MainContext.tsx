@@ -142,6 +142,8 @@ export const GlobalContextProvider = ({ children }:{children:ReactNode}) => {
             setMonthlyChange(`${jsonRes.market_data.price_change_percentage_30d.toFixed(2)}%`)
             setYearlyChange(`${jsonRes.market_data.price_change_percentage_1y.toFixed(2)}%`)
 
+            setVolume(`$${jsonRes.market_data.total_volume.usd.toLocaleString()}`);
+
             setDailyHigh(`$${jsonRes.market_data.high_24h.usd.toLocaleString()}`);
             setDailyLow(`$${jsonRes.market_data.low_24h.usd.toLocaleString()}`);
         }

@@ -29,10 +29,10 @@ export const Summary = () => {
 
     ]
 
-    const {marketCap} = useGlobalContext()
+    const {marketCap, volume, circulatingSupply} = useGlobalContext()
 
     return (
-        <div className='mt-10 max-md:mt-20 px-20 max-md:px-4 flex flex-col max-md:mx-auto max-md:items-center'>
+        <div className='mt-10 max-md:mt-20 px-20 mb-10 max-md:px-4 flex flex-col max-md:mx-auto max-md:items-center'>
             <div className='flex gap-2 items-center justify-start'>
                 <Image src={btc} alt='btc' className='rounded-full w-10' />
                 <h2 className='font-bold text-2xl'>Bitcoin (BTC)</h2>
@@ -82,11 +82,11 @@ export const Summary = () => {
                     </div>
                     <div>
                         <h2 className='text-xl text-gray-600'>24Hr Volume</h2>
-                        <h2 className='font-semibold'>$35.9B</h2>
+                        <h2 className='font-semibold'>{volume}</h2>
                     </div>
                     <div>
                         <h2 className='text-xl text-gray-600'>Circulating Supply</h2>
-                        <h2 className='font-semibold'>19.76M BTC</h2>
+                        <h2 className='font-semibold'>{circulatingSupply}</h2>
                     </div>
                     <div>
                         <h2 className='text-xl text-gray-600'>Links</h2>
