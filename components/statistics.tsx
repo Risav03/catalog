@@ -42,22 +42,22 @@ export const Statistics = () => {
           </div>
         </div>
 
-        <div className='bg-gray-100 h-fit w-full rounded-lg px-4 py-2'>
+        <div className='bg-gray-100 h-fit text-center w-full rounded-lg px-4 py-2'>
           <h3>Price Change</h3>
-          <div className='flex flex-wrap max-md:items-center max-md:justify-center gap-4 mt-2'>
-            <div className='bg-white rounded-md w-28 h-20 flex flex-col items-center justify-center p-2 shadow-xl shadow-black/20'>
+          <div className='flex flex-wrap max-md:items-center justify-center gap-4 mt-2'>
+            <div className='bg-white rounded-md w-28 md:w-[20%] h-20 flex flex-col items-center justify-center p-2 shadow-xl shadow-black/20'>
                 <h3 className='font-semibold text-sm'>24H Change</h3>
                 <h3 className={`${dailyChange[0] == "-" ? "text-red-500" : "text-[#67BF6B]"} font-semibold text-lg`}>{dailyChange[0] != "-" && "+"}{dailyChange}</h3>
             </div>
-            <div className='bg-white rounded-md w-28 h-20 flex flex-col items-center justify-center p-2 shadow-xl shadow-black/20'>
+            <div className='bg-white rounded-md w-28 md:w-[20%] h-20 flex flex-col items-center justify-center p-2 shadow-xl shadow-black/20'>
                 <h3 className='font-semibold text-sm'>1W Change</h3>
                 <h3 className={`${weeklyChange[0] == "-" ? "text-red-500" : "text-[#67BF6B]"} font-semibold text-lg`}>{weeklyChange[0] != "-" && "+"}{weeklyChange}</h3>
             </div>
-            <div className='bg-white rounded-md w-28 h-20 flex flex-col items-center justify-center p-2 shadow-xl shadow-black/20'>
+            <div className='bg-white rounded-md w-28 md:w-[20%] h-20 flex flex-col items-center justify-center p-2 shadow-xl shadow-black/20'>
                 <h3 className='font-semibold text-sm'>1M Change</h3>
                 <h3 className={`${monthlyChange[0] == "-" ? "text-red-500" : "text-[#67BF6B]"} font-semibold text-lg`}>{monthlyChange[0] != "-" && "+"}{monthlyChange}</h3>
             </div>
-            <div className='bg-white rounded-md w-28 h-20 flex flex-col items-center justify-center p-2 shadow-xl shadow-black/20'>
+            <div className='bg-white rounded-md w-28 md:w-[20%] h-20 flex flex-col items-center justify-center p-2 shadow-xl shadow-black/20'>
                 <h3 className='font-semibold text-sm'>1Y Change</h3>
                 <h3 className={`${yearlyChange[0] == "-" ? "text-red-500" : "text-[#67BF6B]"} font-semibold text-lg`}>{yearlyChange[0] != "-" && "+"}{yearlyChange}</h3>
             </div>
