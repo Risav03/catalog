@@ -218,8 +218,8 @@ export const Chart = () => {
                                 <h3 className='  max-md:hidden md:text-[18px]'>Compare</h3>
                             </button>
                             <div className={`bg-gray-100 ${compareDiv ? "translate-x-[3rem] md:translate-x-[8.6rem] " : "translate-x-1"} z-0 duration-200 hover:bg-gray-200 cursor-pointer absolute w-[3rem] md:w-20 h-10 flex items-center justify-center rounded-r-lg`} >
-                                {pair == "BTCUSDT" ? <button onClick={() => { setCompareDiv(false); setPair("BNBBTC") }} className='flex gap-2 items-center'><Image src={bnb} alt='bnb' className='w-6 h-6' /></button> :
-                                    <button onClick={() => { setCompareDiv(false); setPair("BTCUSDT") }} className='flex gap-2 items-center'><Image src={tether} alt='bnb' className='w-6 h-6' /></button>
+                                {pair == "BTCUSDT" ? <button onClick={() => { setCompareDiv(false); setPair("BNBBTC") }} className='flex gap-2 w-full justify-center items-center'><Image src={bnb} alt='bnb' className='w-6 h-6' /></button> :
+                                    <button onClick={() => { setCompareDiv(false); setPair("BTCUSDT") }} className='flex gap-2 w-full justify-center items-center'><Image src={tether} alt='bnb' className='w-6 h-6' /></button>
                                 }
                             </div>
                         </div>
@@ -287,7 +287,7 @@ export const Chart = () => {
                                             fill="url(#colorUv)"
                                         />
 
-                                        <ReferenceLine yAxisId="left" y={Number(lastPrice2)} className='z-10'>
+                                        <ReferenceLine yAxisId="left" y={Number(lastPrice2)} strokeOpacity={0} className='z-10'>
                                             <Label content={<CustomReferenceLineLabel2 value={Number(lastPrice2)} color={colours[theme]} viewBox={{}} />} position="right" />
                                         </ReferenceLine>
 
