@@ -97,7 +97,7 @@ export const Chart = () => {
 
     const { theme } = useGlobalContext()
     const [domain, setDomain] = useState<number>(500)
-    const [domain2, setDomain2] = useState<number>(200);
+    const [domain2, setDomain2] = useState<number>(5000);
 
     const [bnbDomain, setBnbDomain] = useState<number>(100);
 
