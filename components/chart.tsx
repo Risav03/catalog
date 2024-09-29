@@ -38,9 +38,9 @@ const CustomReferenceLineLabel = ({ value, viewBox, pair }: { value: number; vie
         <>
             <g className='-translate-y-[0.55rem] absolute z-[1000]'>
                 <rect
-                    x={viewBox.width - 15}
+                    x={viewBox.width - 20}
                     y={viewBox.y - 10}
-                    width={100}
+                    width={110}
                     height={40}
                     rx={10}
                     ry={10}
@@ -48,12 +48,12 @@ const CustomReferenceLineLabel = ({ value, viewBox, pair }: { value: number; vie
                 />
                 <text
                     x={viewBox.width + 35}
-                    y={viewBox.y + 10}
+                    y={viewBox.y + 11}
                     textAnchor="middle"
                     fill="#FFFFFF"
-                    fontSize={16}
+                    fontSize={18}
                     dy={4}
-                    fontWeight={800}
+                    fontWeight={100}
                 >
                     {Number(value).toLocaleString()}
                 </text>
@@ -67,9 +67,9 @@ const CustomReferenceLineLabel2 = ({ value, viewBox, color }: { value: number; v
         <>
             <g className='-translate-y-[0.55rem] absolute z-[1000]'>
                 <rect
-                    x={viewBox.width - 15}
+                    x={viewBox.width - 20}
                     y={viewBox.y - 10}
-                    width={100}
+                    width={110}
                     height={40}
                     rx={10}
                     ry={10}
@@ -77,12 +77,12 @@ const CustomReferenceLineLabel2 = ({ value, viewBox, color }: { value: number; v
                 />
                 <text
                     x={viewBox.width + 35}
-                    y={viewBox.y + 10}
+                    y={viewBox.y + 11}
                     textAnchor="middle"
                     fill="#FFFFFF"
-                    fontSize={16}
+                    fontSize={18}
                     dy={4}
-                    fontWeight={800}
+                    fontWeight={100}
                 >
                     {Number(value).toLocaleString()}
                 </text>
@@ -217,7 +217,7 @@ export const Chart = () => {
                                 <Image src={compare} alt='fullscreen' className={`w-6 h-6 ${compareDiv && "brightness-200 contrast-200"} `} />
                                 <h3 className='  max-md:hidden md:text-[18px]'>Compare</h3>
                             </button>
-                            <div className={`bg-gray-100 ${compareDiv ? "translate-x-[3rem] md:translate-x-[8.6rem] " : "translate-x-1"} z-0 duration-200 absolute w-[3rem] md:w-20 h-10 flex items-center justify-center rounded-r-lg`} >
+                            <div className={`bg-gray-100 ${compareDiv ? "translate-x-[3rem] md:translate-x-[8.6rem] " : "translate-x-1"} z-0 duration-200 hover:bg-gray-200 cursor-pointer absolute w-[3rem] md:w-20 h-10 flex items-center justify-center rounded-r-lg`} >
                                 {pair == "BTCUSDT" ? <button onClick={() => { setCompareDiv(false); setPair("BNBBTC") }} className='flex gap-2 items-center'><Image src={bnb} alt='bnb' className='w-6 h-6' /></button> :
                                     <button onClick={() => { setCompareDiv(false); setPair("BTCUSDT") }} className='flex gap-2 items-center'><Image src={tether} alt='bnb' className='w-6 h-6' /></button>
                                 }
