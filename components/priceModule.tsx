@@ -41,7 +41,7 @@ export const PriceModule = () => {
         </div>
         <div>
             <h2 className={`${priceChange[0] == "-" ? "text-red-500" : "text-[#67BF6B]"} text-[18px]`}>
-               {priceChange[0] == "-" ? "$" : "+$"} {(Number(priceChange)).toFixed(2).toLocaleString()} ({(Number(percent)).toFixed(2).toLocaleString()}%)
+               {priceChange[0] == "-" ? "" : "+"} {(Number(priceChange)).toFixed(2).toLocaleString()} ({(Number(percent)).toFixed(2).toLocaleString()}%)
             </h2>
         </div>
     </div>
