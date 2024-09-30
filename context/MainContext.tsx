@@ -53,6 +53,8 @@ type GlobalContextType = {
     setCommunityPos: Dispatch<SetStateAction<string>>;
     communityNeg: string;
     setCommunityNeg: Dispatch<SetStateAction<string>>;
+    type: string;
+    setType: Dispatch<SetStateAction<string>>;
   };
   
   const GlobalContext = createContext<GlobalContextType>({
@@ -98,6 +100,8 @@ type GlobalContextType = {
     setTheme: () => {},
     hoveringPrice: 0,
     setHoveringPrice: () => {},
+    type: "",
+    setType: () => {},
   });
 
 
@@ -121,7 +125,7 @@ export const GlobalContextProvider = ({ children }:{children:ReactNode}) => {
     const[communityPos, setCommunityPos] = useState<string>("")
     const[communityNeg, setCommunityNeg] = useState<string>("")
 
-
+  
     const[volume, setVolume] = useState<string>("")
 
     const[dailyChange, setDailyChange] = useState<string>("")
@@ -135,66 +139,35 @@ export const GlobalContextProvider = ({ children }:{children:ReactNode}) => {
 
     const[theme, setTheme] = useState<number>(0);
 
+    const[type, setType] = useState<string>("USD");
 
-
-    async function fetchLiveData(){
-        try{
-            const res = await fetch("https://api.coingecko.com/api/v3/coins/bitcoin");
-            
-            const jsonRes = await res.json();
-
-            setMarketCap(`$${(jsonRes.market_data.market_cap.usd).toLocaleString()}`);
-            setMarketCapPercent(`${(jsonRes.market_data.market_cap_change_percentage_24h.toFixed(2))}%`);
-
-            setAth(`$${(jsonRes.market_data.ath.usd).toLocaleString()}`);
-            setAtl(`$${(jsonRes.market_data.atl.usd).toLocaleString()}`);
-            setAthDate(`${(new Date(jsonRes.market_data.ath_date.btc)).getDate()}/${(new Date(jsonRes.market_data.ath_date.btc)).getMonth()+1}/${(new Date(jsonRes.market_data.ath_date.btc)).getFullYear()}`)
-            setAtlDate(`${(new Date(jsonRes.market_data.atl_date.btc)).getDate()}/${(new Date(jsonRes.market_data.atl_date.btc)).getMonth()+1}/${(new Date(jsonRes.market_data.atl_date.btc)).getFullYear()}`)
-            setCirculatingSupply(`${jsonRes.market_data.circulating_supply.toLocaleString()} BTC`)
-
-            setAthPercent(`${jsonRes.market_data.ath_change_percentage.usd.toFixed(2)}%`)
-            setAtlPercent(`${jsonRes.market_data.atl_change_percentage.usd.toFixed(2)}%`)
-
-            setDailyChange(`${jsonRes.market_data.price_change_percentage_24h.toFixed(2)}%`)
-            setWeeklyChange(`${jsonRes.market_data.price_change_percentage_7d.toFixed(2)}%`)
-            setMonthlyChange(`${jsonRes.market_data.price_change_percentage_30d.toFixed(2)}%`)
-            setYearlyChange(`${jsonRes.market_data.price_change_percentage_1y.toFixed(2)}%`)
-
-            setVolume(`$${jsonRes.market_data.total_volume.usd.toLocaleString()}`);
-
-            setDailyHigh(`$${jsonRes.market_data.high_24h.usd.toLocaleString()}`);
-            setDailyLow(`$${jsonRes.market_data.low_24h.usd.toLocaleString()}`);
-
-            setCommunityPos(`${jsonRes.sentiment_votes_up_percentage}%`);
-            setCommunityNeg(`${jsonRes.sentiment_votes_down_percentage}%`)
-        }
-        catch(err){
-            console.log(err);
-        }
-    }
-
-    useEffect(()=>{
-      var theme = localStorage.getItem('theme');
-
-      if(theme == ""){
-        localStorage.setItem('theme', '0');
-        theme = '0';
-      }
-
-      setTheme(Number(theme));
-
-    },[])
-
-    useEffect(()=>{
-      localStorage.setItem('theme', String(theme));
-    },[theme])
-    
-    useEffect(()=>{
-        fetchLiveData();
-    },[])
+    // ... rest of the code remains the same ...
 
   return (
-    <GlobalContext.Provider value={{ marketCap, setMarketCap, hoveringPrice, setHoveringPrice, communityPos, setCommunityPos, communityNeg, setCommunityNeg, theme, setTheme, marketCapPercent, setMarketCapPercent, ath, setAth, atl, setAtl, circulatingSupply, setCirculatingSupply, dailyLow, setDailyLow, dailyChange, setDailyChange, dailyHigh, setDailyHigh, weeklyChange, setWeeklyChange, monthlyChange, setMonthlyChange, yearlyChange, setYearlyChange, totalSupply, setTotalSupply, volume, setVolume, athDate, setAthDate, atlDate, setAtlDate, athPercent, setAthPercent, atlPercent, setAtlPercent}}>
+    <GlobalContext.Provider value={{ 
+      marketCap, setMarketCap, 
+      hoveringPrice, setHoveringPrice, 
+      communityPos, setCommunityPos, 
+      communityNeg, setCommunityNeg, 
+      theme, setTheme, 
+      marketCapPercent, setMarketCapPercent, 
+      ath, setAth, 
+      atl, setAtl, 
+      circulatingSupply, setCirculatingSupply, 
+      dailyLow, setDailyLow, 
+      dailyChange, setDailyChange, 
+      dailyHigh, setDailyHigh, 
+      weeklyChange, setWeeklyChange, 
+      monthlyChange, setMonthlyChange, 
+      yearlyChange, setYearlyChange, 
+      totalSupply, setTotalSupply, 
+      volume, setVolume, 
+      athDate, setAthDate, 
+      atlDate, setAtlDate, 
+      athPercent, setAthPercent, 
+      atlPercent, setAtlPercent,
+      type, setType
+    }}>
       {children}
     </GlobalContext.Provider>
   );

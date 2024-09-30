@@ -100,7 +100,7 @@ export const Chart = () => {
 
     const [fetchInterval, setFetchInterval] = useState<string>("1d");
 
-    const { theme, setHoveringPrice } = useGlobalContext()
+    const { theme, setHoveringPrice, setType } = useGlobalContext()
     const [domain, setDomain] = useState<number>(500)
     const btcDomain = 80000;
     const [domain2, setDomain2] = useState<number>(5000);
@@ -121,8 +121,8 @@ export const Chart = () => {
 
     const [fullscreenMode, setFullscreenMode] = useState<boolean>(false);
 
-    const linkBTC = `https://api.binance.us/api/v3/uiKlines?symbol=BTCUSDT&interval=${fetchInterval}&limit=80`
-    const linkBNB = `https://api.binance.us/api/v3/uiKlines?symbol=BNBBTC&interval=${fetchInterval}&limit=80`
+    const linkBTC = `https://api.binance.us/api/v3/uiKlines?symbol=BTCUSDT&interval=${fetchInterval}&limit=60`
+    const linkBNB = `https://api.binance.us/api/v3/uiKlines?symbol=BNBBTC&interval=${fetchInterval}&limit=60`
 
 
     const bgColours = ["bg-[#4B40EE]", "bg-teal-600", "bg-blue-600", "bg-orange-600", "bg-purple-600"];
@@ -155,11 +155,11 @@ export const Chart = () => {
             })
 
             if (pair == "BNBBTC") {
-                setLastPrice2(datasetSubarr[49].Price)
+                setLastPrice2(datasetSubarr[59].Price)
                 setDataset2(datasetSubarr);
             }
             else {
-                setLastPrice(datasetSubarr[49].Price)
+                setLastPrice(datasetSubarr[59].Price)
                 setDataset(datasetSubarr);
             }
 
@@ -173,6 +173,7 @@ export const Chart = () => {
         console.log("HELLO")
         if (pair == "BNBBTC") {
             fetchChart(linkBNB);
+            setDomain2(5000)
         }
         if (pair == "BTCUSDT") {
             fetchChart(linkBTC)
@@ -227,8 +228,8 @@ export const Chart = () => {
                                 <h3 className='  max-md:hidden md:text-[18px]'>Compare</h3>
                             </button>
                             <div className={`bg-gray-100 ${compareDiv ? "translate-x-[3rem] md:translate-x-[8.6rem] " : "translate-x-1"} z-0 duration-200 hover:bg-gray-200 cursor-pointer absolute w-[3rem] md:w-20 h-10 flex items-center justify-center rounded-r-lg`} >
-                                {pair == "BTCUSDT" ? <button onClick={() => { setCompareDiv(false); setPair("BNBBTC") }} className='flex gap-2 w-full justify-center items-center'><Image src={bnb} alt='bnb' className='w-6 h-6' /></button> :
-                                    <button onClick={() => { setCompareDiv(false); setPair("BTCUSDT") }} className='flex gap-2 w-full justify-center items-center'><Image src={tether} alt='bnb' className='w-6 h-6' /></button>
+                                {pair == "BTCUSDT" ? <button onClick={() => { setCompareDiv(false); setPair("BNBBTC"); setType("BNB") }} className='flex gap-2 w-full justify-center items-center'><Image src={bnb} alt='bnb' className='w-6 h-6' /></button> :
+                                    <button onClick={() => { setCompareDiv(false); setType("USD"), setPair("BTCUSDT") }} className='flex gap-2 w-full justify-center items-center'><Image src={tether} alt='bnb' className='w-6 h-6' /></button>
                                 }
                             </div>
                         </div>
@@ -237,7 +238,7 @@ export const Chart = () => {
                     <div className={`flex gap-2 max-md:flex-wrap max-md:justify-center md:w-[62%] items-end justify-end`}>
                         <button onClick={() => { setFetchInterval("1d"); setDomain(500); setDomain2(5000); setBnbDomain(150) }} className={` duration-200 ${fetchInterval == "1d" ? "text-white " + bgColours[theme] : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1d</button>
                         <button onClick={() => { setFetchInterval("3d"); setDomain(1500); setDomain2(15000); setBnbDomain(150) }} className={` duration-200 ${fetchInterval == "3d" ? "text-white " + bgColours[theme] : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>3d</button>
-                        <button onClick={() => { setFetchInterval("1w"); setDomain(5000); setDomain2(50000); setBnbDomain(200) }} className={` duration-200 ${fetchInterval == "1w" ? "text-white " + bgColours[theme] : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1w</button>
+                        <button onClick={() => { setFetchInterval("1w"); setDomain(50000); setDomain2(100000); setBnbDomain(200) }} className={` duration-200 ${fetchInterval == "1w" ? "text-white " + bgColours[theme] : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1w</button>
                         <button onClick={() => { setFetchInterval("1M"); setDomain(500000); setDomain2(5000000); setBnbDomain(800) }} className={` duration-200 ${fetchInterval == "1M" ? "text-white " + bgColours[theme] : "text-btc-disabled hover:bg-gray-100"} h-10 px-4 rounded-lg md:text-[18px]`}>1m</button>
                         <button className={` cursor-not-allowed duration-200 ${fetchInterval == "6m" ? "text-white" + bgColours[theme] : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>6m</button>
                         <button className={` cursor-not-allowed duration-200 ${fetchInterval == "1y" ? "text-white " + bgColours[theme] : "text-gray-400 "} h-10 px-4 rounded-lg md:text-[18px]`}>1y</button>
