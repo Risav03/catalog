@@ -126,7 +126,7 @@ export const Chart = () => {
 
 
     const bgColours = ["bg-[#4B40EE]", "bg-teal-600", "bg-blue-600", "bg-orange-600", "bg-purple-600"];
-    const colours = ["#4B40EE", "#0d9489", "#2564eb", "#d97706", "#9233ea"];
+    const colours = ["#4B40EE", "#089487", "#2663ec", "#e95807", "#9234e8"];
 
     async function fetchChart(link: string) {
         try {
@@ -134,7 +134,6 @@ export const Chart = () => {
             const res = await fetch(link);
             const jsonRes = await res.json();
             const datasetSubarr: any = []
-            console.log(jsonRes);
 
             jsonRes.map((item: any, i: number) => {
                 const date = new Date(item[6])
@@ -170,7 +169,7 @@ export const Chart = () => {
     }
 
     useEffect(() => {
-        console.log("HELLO")
+
         if (pair == "BNBBTC") {
             fetchChart(linkBNB);
             setDomain2(5000)
