@@ -102,6 +102,7 @@ export const Chart = () => {
 
     const { theme, setHoveringPrice } = useGlobalContext()
     const [domain, setDomain] = useState<number>(500)
+    const btcDomain = 80000;
     const [domain2, setDomain2] = useState<number>(5000);
 
     const [bnbDomain, setBnbDomain] = useState<number>(100);
@@ -120,8 +121,8 @@ export const Chart = () => {
 
     const [fullscreenMode, setFullscreenMode] = useState<boolean>(false);
 
-    const linkBTC = `https://api.binance.us/api/v3/uiKlines?symbol=BTCUSDT&interval=${fetchInterval}&limit=50`
-    const linkBNB = `https://api.binance.us/api/v3/uiKlines?symbol=BNBBTC&interval=${fetchInterval}&limit=50`
+    const linkBTC = `https://api.binance.us/api/v3/uiKlines?symbol=BTCUSDT&interval=${fetchInterval}&limit=80`
+    const linkBNB = `https://api.binance.us/api/v3/uiKlines?symbol=BNBBTC&interval=${fetchInterval}&limit=80`
 
 
     const bgColours = ["bg-[#4B40EE]", "bg-teal-600", "bg-blue-600", "bg-orange-600", "bg-purple-600"];
@@ -134,7 +135,7 @@ export const Chart = () => {
             const jsonRes = await res.json();
             const datasetSubarr: any = []
             console.log(jsonRes);
-            
+
             jsonRes.map((item: any, i: number) => {
                 const date = new Date(item[6])
 
@@ -338,7 +339,7 @@ export const Chart = () => {
                                     onMouseLeave={handleMouseLeave}
                                 >
                                     <XAxis dataKey="Time" hide />
-                                    <YAxis yAxisId="left" hide />
+                                    <YAxis yAxisId="left" hide domain={[0,btcDomain]} />
                                     <YAxis yAxisId="right" orientation="right" domain={[0, domain]} hide />
                                     <defs>
                                         <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
