@@ -34,6 +34,11 @@ const CustomLabel = ({ active, payload, labelStyle, pair }: any) => {
 
 
 const CustomReferenceLineLabel = ({ value, viewBox, pair }: { value: number; viewBox: any; pair: string }) => {
+
+    const{setHoveringPrice} = useGlobalContext();
+
+    setHoveringPrice(value);
+
     return (
         <>
             <g className='-translate-y-[0.55rem] absolute z-[1000]'>
@@ -95,7 +100,7 @@ export const Chart = () => {
 
     const [fetchInterval, setFetchInterval] = useState<string>("1d");
 
-    const { theme } = useGlobalContext()
+    const { theme, setHoveringPrice } = useGlobalContext()
     const [domain, setDomain] = useState<number>(500)
     const [domain2, setDomain2] = useState<number>(5000);
 
@@ -124,10 +129,12 @@ export const Chart = () => {
 
     async function fetchChart(link: string) {
         try {
+            
             const res = await fetch(link);
             const jsonRes = await res.json();
             const datasetSubarr: any = []
-
+            console.log(jsonRes);
+            
             jsonRes.map((item: any, i: number) => {
                 const date = new Date(item[6])
 
@@ -194,7 +201,8 @@ export const Chart = () => {
     }
 
     const handleMouseLeave = () => {
-        setBlur(false)
+        setBlur(false);
+        setHoveringPrice(0);
         setActiveY(null);
     };
     return (

@@ -47,6 +47,8 @@ type GlobalContextType = {
     setAtlPercent: Dispatch<SetStateAction<string>>;
     theme: number;
     setTheme: Dispatch<SetStateAction<number>>;
+    hoveringPrice: number;
+    setHoveringPrice: Dispatch<SetStateAction<number>>;
     communityPos: string;
     setCommunityPos: Dispatch<SetStateAction<string>>;
     communityNeg: string;
@@ -94,6 +96,8 @@ type GlobalContextType = {
     setCommunityNeg: () => {},
     theme: 0,
     setTheme: () => {},
+    hoveringPrice: 0,
+    setHoveringPrice: () => {},
   });
 
 
@@ -123,7 +127,9 @@ export const GlobalContextProvider = ({ children }:{children:ReactNode}) => {
     const[dailyChange, setDailyChange] = useState<string>("")
     const[weeklyChange, setWeeklyChange] = useState<string>("")
     const[monthlyChange, setMonthlyChange] = useState<string>("")
-    const[yearlyChange, setYearlyChange] = useState<string>("")
+    const[yearlyChange, setYearlyChange] = useState<string>("");
+
+    const[hoveringPrice, setHoveringPrice] = useState<number>(0)
 
     const[totalSupply, setTotalSupply] = useState<string>("");
 
@@ -188,7 +194,7 @@ export const GlobalContextProvider = ({ children }:{children:ReactNode}) => {
     },[])
 
   return (
-    <GlobalContext.Provider value={{ marketCap, setMarketCap, communityPos, setCommunityPos, communityNeg, setCommunityNeg, theme, setTheme, marketCapPercent, setMarketCapPercent, ath, setAth, atl, setAtl, circulatingSupply, setCirculatingSupply, dailyLow, setDailyLow, dailyChange, setDailyChange, dailyHigh, setDailyHigh, weeklyChange, setWeeklyChange, monthlyChange, setMonthlyChange, yearlyChange, setYearlyChange, totalSupply, setTotalSupply, volume, setVolume, athDate, setAthDate, atlDate, setAtlDate, athPercent, setAthPercent, atlPercent, setAtlPercent}}>
+    <GlobalContext.Provider value={{ marketCap, setMarketCap, hoveringPrice, setHoveringPrice, communityPos, setCommunityPos, communityNeg, setCommunityNeg, theme, setTheme, marketCapPercent, setMarketCapPercent, ath, setAth, atl, setAtl, circulatingSupply, setCirculatingSupply, dailyLow, setDailyLow, dailyChange, setDailyChange, dailyHigh, setDailyHigh, weeklyChange, setWeeklyChange, monthlyChange, setMonthlyChange, yearlyChange, setYearlyChange, totalSupply, setTotalSupply, volume, setVolume, athDate, setAthDate, atlDate, setAtlDate, athPercent, setAthPercent, atlPercent, setAtlPercent}}>
       {children}
     </GlobalContext.Provider>
   );
